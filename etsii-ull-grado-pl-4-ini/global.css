@@ -1,0 +1,42 @@
+html *
+{
+   font-size: large; 
+   /* The !important ensures that nothing can override what you've set in this style (unless it is also important). */
+   font-family: Arial;
+}
+
+.thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+
+h1            { text-align: center; font-size: x-large; }
+th, td        { vertical-align: top; text-align: left; }   
+/* #finaltable  * { color: white; background-color: black; }   */
+
+/* #finaltable table { border-collapse:collapse; } */
+/* #finaltable table, td { border:1px solid white; } */
+#finaltable:hover td { background-color: blue; } 
+tr:nth-child(odd)    { background-color:#eee; }
+tr:nth-child(even)    { background-color:#00FF66; }
+input        { text-align: right;  border: none;       }     /* Align input to the right  */
+textarea     { border: outset; border-color: white;       }                        
+table        { border: inset; border-color: white; }
+.hidden      { display: ____; }  /*none*/
+.unhidden    { display: _____; } /* inline o block */
+table.center { margin-left:auto; margin-right:auto; }
+#result      { border-color: red; }
+tr.error       { background-color: red; }
+pre.output   { background-color: white; }
+span.repeated { background-color: red }
+span.header { ________________: ____ } /* background-color: #0101DF */
+span.comments { ________________: ______ } /* background-color: #FE642E */
+span.blanks { ________________: _____ } /* background-color: #F4FA58 */
+span.nameEqualValue { ________________: ____ } /* background-color: #D0A9F5 */
+span.error { ________________: ___ } /* background-color: #BDBDBD */
+
+body
+{
+ background-color:#b0c4de;  /* blue */
+}
