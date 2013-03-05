@@ -23,18 +23,18 @@ tr:nth-child(even)    { background-color:#00FF66; }
 input        { text-align: right;  border: none;       }     /* Align input to the right  */
 textarea     { border: outset; border-color: white;       }                        
 table        { border: inset; border-color: white; }
-.hidden      { display: ____; }  /*none*/
-.unhidden    { display: _____; } /* inline o block */
+.hidden      { display: none; }  /*none*/
+.unhidden    { display: inline; } /* inline o block */
 table.center { margin-left:auto; margin-right:auto; }
 #result      { border-color: red; }
 tr.error       { background-color: red; }
 pre.output   { background-color: white; }
 span.repeated { background-color: red }
-span.header { ________________: ____ } /* background-color: #0101DF */
-span.comments { ________________: ______ } /* background-color: #FE642E */
-span.blanks { ________________: _____ } /* background-color: #F4FA58 */
-span.nameEqualValue { ________________: ____ } /* background-color: #D0A9F5 */
-span.error { ________________: ___ } /* background-color: #BDBDBD */
+span.Cabeceras { background-color: #F4FA58} /* background-color: #F4FA58 */
+span.Comentarios { background-color: #FE642E } /* background-color: #FE642E */
+span.Blancos { background-color: #0101DF } /* background-color: #0101DF */
+span.NombreEqualValor { background-color: #D0A9F5 } /* background-color: #D0A9F5 */
+span.Error { background-color: #BDBDBD } /* background-color: #BDBDBD */
 
 body
 {

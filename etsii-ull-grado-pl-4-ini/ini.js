@@ -1,31 +1,31 @@
-"use ______"; // Use ECMAScript 5 strict mode in browsers that support it   (strict)
+"use strict"; // Use ECMAScript 5 strict mode in browsers that support it   (strict)
 
-$(document)._____(function() { //ready
-   $("#fileinput").______(calculate); //change
+$(document).ready(function() { //ready
+   $("#fileinput").change(calculate); //change
 });
 
 function calculate(evt) {
   var f = evt.target.files[0]; 
 
   if (f) {
-    var r = new __________(); //Filereader
+    var r = new FileReader(); //Filereader
     r.onload = function(e) { 
-      var contents = e.target.______; //result
-      
+      var contents = e.target.result; //result 
+
       var tokens = lexer(contents);
       var pretty = tokensToString(tokens);
-      
+
       out.className = 'unhidden';
-      initialinput._________ = contents; //innerHTML
-      finaloutput._________ = pretty; //innerHTML
+      initialinput.innerHTML = contents; //innerHTML
+      finaloutput.innerHTML = pretty; //innerHTML
     }
-    r.__________(f); // Leer como texto (readAsText)
+    r.readAsText(f); // Leer como texto (readAsText)
   } else { 
     alert("Failed to load file");
   }
 }
 
-var temp = '<li> <span class = "<%= ______ %>"> <%= _ %> </span>\n'; //%= Código javascript se evaluara y se inserta por el =, el % lo que hace es evaluarlo.% Tipo de token y en el otro la cadena que representa al token. Nombre de token como clase t.type...s  //token.type....match.
+var temp = '<li> <span class = "<%= t.type %>"> <%= s %> </span>\n'; //%= Código javascript se evaluara y se inserta por el =, el % lo que hace es evaluarlo.% Tipo de token y en el otro la cadena que representa al token. Nombre de token como clase t.type...s  //token.type....match.
 
 function tokensToString(tokens) {
    var r = '';
@@ -40,35 +40,37 @@ function tokensToString(tokens) {
 }
 
 function lexer(input) {
-  var blanks         = /^___/; 
-  var iniheader      = /^________________/;
-  var comments       = /^________/;
-  var nameEqualValue = /^________________________/;
-  var any            = /^_______/;
+
+  var blanks         = /^\s+/; 
+  var iniheader      = /^\[([^\]\r\n]+)\]/;
+  var comments       = /^[;#](.*)/;
+  var nameEqualValue = /^([^=;\r\n]+)=([^;\r\n]*)/;
+  var any            = /^(.|\n)+/;
 
   var out = [];
   var m = null;
 
   while (input != '') {
-    if (m = blanks.____(input)) { //exec
-      input = input.substr(m.index+___________); // ''
-      out.push({ type : ________, match: _ });  //'blanks' ..... match: m
+    if (m = blanks.exec(input)) { //exec
+      input = input.replace(blanks, '');//input = input.substr(m.index+m.lastIndex); //m.lastIndex
+      out.push({ type : 'Blancos', match: m });  //'blanks' ..... match: m
     }
     else if (m = iniheader.exec(input)) {
-      input = input.substr(___________________);
-      _______________________________________ // avanzemos en input out.push({ type : ________, match: _ });
+      input = input.replace(iniheader, '');//input = input.substr(m.index+m.lastIndex); //m.index+m.lastIndex
+      out.push({ type : 'Cabeceras', match: m }); // avanzemos en input out.push({ type : ________, match: _ }); input.lastIndex
     }
     else if (m = comments.exec(input)) {
-      input = input.substr(___________________); //m.index+''
-      _________________________________________ //out.push({ type : ________, match: _ });
+      input = input.replace(comments, '');//input = input.substr(m.index+m.lastIndex); //m.index+m.lastIndex
+      out.push({ type : 'Comentarios', match: m });//out.push({ type : ________, match: _ });
     }
     else if (m = nameEqualValue.exec(input)) {
-      input = input.substr(___________________); //m.index+''
-      _______________________________________________ //out.push({ type : ________, match: _ });
+      input = input.replace(nameEqualValue, '');//input = input.substr(m.index+m.lastIndex); //m.index+m.lastIndex
+      out.push({ type : 'NombreEqualValor', match: m }); //out.push({ type : ________, match: _ });
     }
     else if (m = any.exec(input)) {
-      _______________________________________ //out.push({ type : ________, match: _ });
-      input = '';
+      input = input.replace(any, '');
+      out.push({ type : 'Error', match: m }); //out.push({ type : ________, match: _ });
+      //input = '';
     }
     else {
       alert("Fatal Error!"+substr(input,0,20));
